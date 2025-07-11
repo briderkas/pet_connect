@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'register_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/welcome_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const PetConnectApp());
@@ -47,27 +49,22 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            color: Colors.black.withOpacity(0.45),
-          ),
+          Container(color: Colors.black.withOpacity(0.45)),
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'PetConnect',
-                      style: GoogleFonts.pacifico(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
+                    Text('PetConnect',
+                        style: GoogleFonts.pacifico(
+                            fontSize: 36,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white)),
                     const SizedBox(height: 40),
 
-                    // Glassmorphism form with improved readability
+                    /// Glassmorphism login form
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: BackdropFilter(
@@ -77,32 +74,30 @@ class LoginPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.white.withOpacity(0.3)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                            border: Border.all(
+                                color: Colors.white.withOpacity(0.3)),
                           ),
                           child: Column(
                             children: [
                               TextField(
                                 decoration: InputDecoration(
                                   hintText: 'Email',
-                                  hintStyle: const TextStyle(color: Colors.white70),
-                                  prefixIcon: const Icon(Icons.email, color: Colors.white70),
+                                  hintStyle:
+                                  const TextStyle(color: Colors.white70),
+                                  prefixIcon: const Icon(Icons.email,
+                                      color: Colors.white70),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(color: Colors.white70),
+                                    borderSide: const BorderSide(
+                                        color: Colors.white70),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(color: Colors.white),
+                                    borderSide:
+                                    const BorderSide(color: Colors.white),
                                   ),
                                 ),
                                 style: const TextStyle(color: Colors.white),
@@ -112,32 +107,38 @@ class LoginPage extends StatelessWidget {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: 'Password',
-                                  hintStyle: const TextStyle(color: Colors.white70),
-                                  prefixIcon: const Icon(Icons.lock, color: Colors.white70),
+                                  hintStyle:
+                                  const TextStyle(color: Colors.white70),
+                                  prefixIcon: const Icon(Icons.lock,
+                                      color: Colors.white70),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(color: Colors.white70),
+                                    borderSide: const BorderSide(
+                                        color: Colors.white70),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(color: Colors.white),
+                                    borderSide:
+                                    const BorderSide(color: Colors.white),
                                   ),
                                 ),
                                 style: const TextStyle(color: Colors.white),
                               ),
                               const SizedBox(height: 24),
                               ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // TODO: email login
+                                },
                                 icon: const Icon(Icons.pets),
                                 label: const Text("Login"),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFFd4a373),
                                   foregroundColor: Colors.white,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16, horizontal: 32),
+                                  minimumSize:
+                                  const Size(double.infinity, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
@@ -145,7 +146,9 @@ class LoginPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 16),
                               ElevatedButton.icon(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // TODO: facebook login
+                                },
                                 icon: Image.asset(
                                   'assets/icons/facebook.png',
                                   height: 24,
@@ -154,8 +157,8 @@ class LoginPage extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF1877F2),
                                   foregroundColor: Colors.white,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 14, horizontal: 24),
+                                  minimumSize:
+                                  const Size(double.infinity, 46),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
                                   ),
@@ -167,17 +170,20 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
+
+                    ///  Sign‑Up link ➜ /register
                     TextButton(
-                      onPressed: () {},
-                      child: Text(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/register'),
+                      child: const Text(
                         "Don't have an account? Register here",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
+                        style: TextStyle(
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
