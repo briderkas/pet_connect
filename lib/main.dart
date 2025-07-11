@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'register_screen.dart';
 
 void main() {
   runApp(const PetConnectApp());
@@ -17,8 +18,14 @@ class PetConnectApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
+      initialRoute: '/login',
+      routes: {
+        '/login': (_) => const LoginPage(),
+        '/register': (_) => const RegisterScreen(),
+        '/welcome': (_) => const WelcomeScreen(),
+        '/home': (_) => const HomeScreen(),
+      },
     );
   }
 }
