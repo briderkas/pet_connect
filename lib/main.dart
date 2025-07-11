@@ -4,8 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'screens/register_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/setup_profile_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const PetConnectApp());
 }
 
@@ -27,6 +34,7 @@ class PetConnectApp extends StatelessWidget {
         '/register': (_) => const RegisterScreen(),
         '/welcome': (_) => const WelcomeScreen(),
         '/home': (_) => const HomeScreen(),
+        '/setup': (_) => const SetupProfileScreen(),
       },
     );
   }

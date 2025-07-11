@@ -30,9 +30,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
       if (mounted) Navigator.pushReplacementNamed(context, '/welcome');
     } on FirebaseAuthException catch (e) {
+      final msg = '(${e.code})  ${e.message ?? ''}';
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message ?? 'Error')));
-    } finally {
+          .showSnackBar(SnackBar(content: Text(msg)));
+      debugPrint(msg);            // види у debug конзоли
+    }
+    finally {
       if (mounted) setState(() => _loading = false);
     }
   }
